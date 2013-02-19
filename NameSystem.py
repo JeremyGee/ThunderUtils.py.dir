@@ -1,6 +1,26 @@
 from Helper import color
 from Helper import sudo
 
+@hook.command("rainbowname", description="Toggles a nice rainbow-coloured name")
+def onCommandRainbowname(sender, args)
+    SName=sender.getName()
+    ResultName=''
+    Colours='4c6e23915dd'
+    GSize=len(SName)/10.0
+    if GSize<=1:
+       for i in range(len(SName)):
+            ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+    else:
+        j=0
+        for i in range(len(SName)):
+            ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+            if i-1 == int(j*GSize):
+                j+=1
+            
+    sudo(''.join(['/join ',SName,' ',ResultName]))
+    
+    return True
+
 @hook.command("tags", description="View the tags of the RDF")
 def onCommandTags(sender, args):
     sender.sendMessage(''.join([color("c"), "M", color("f"), " - Moderator"]))
